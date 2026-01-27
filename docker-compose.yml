@@ -1,0 +1,62 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: pgVector.Dockerfile
+    container_name: tai_postgres
+    ports:
+      - "5532:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - node-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: tai_pgadmin
+    ports:
+      - "5051:80"
+    env_file:
+      - .env
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - node-network
+
+  chainlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tai_app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - ./.chainlit:/app/.chainlit
+      - ./public:/app/public
+      - ./src:/app/src
+      - ./.env:/app/.env
+      - ./app.py:/app/app.py
+      - ./chainlit.md:/app/chainlit.md
+      - ./requirements.txt:/app/requirements.txt
+    restart: unless-stopped
+    networks:
+      - node-network
+
+networks:
+  node-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+  chainlit_data:

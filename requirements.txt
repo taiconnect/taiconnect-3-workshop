@@ -1,0 +1,10 @@
+openai
+python-dotenv
+chainlit
+asyncpg
+sqlalchemy
+psycopg[binary]
+llama-index
+llama-index-vector-stores-postgres
+llama-index-llms-anthropic
+llama-index-embeddings-openai

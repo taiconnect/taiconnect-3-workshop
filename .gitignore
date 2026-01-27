@@ -1,0 +1,33 @@
+# Data directory (contains user credentials and conversations)
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Chainlit
+!.chainlit/config.toml
+
+# Streamlit (legacy - no longer used)
+.streamlit/
+components/
+app_old.py
+utils/styles.py
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

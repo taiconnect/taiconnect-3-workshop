@@ -1,4 +1,4 @@
-# Stateful AI Agents — Memory, Context & Personalization at Scale
+# Advanced Memory System – Intelligent Conversations & Context Management
 
 ## 📋 Overview
 This project showcases an advanced conversational agent built with Chainlit and LlamaIndex, featuring sophisticated memory management capabilities. The system leverages multiple memory strategies (Semantic, Summary, and User Preference) to maintain context-aware conversations and provide personalized interactions. It uses PostgreSQL with pgVector for efficient vector storage and retrieval, supporting both OpenAI and Anthropic models.
@@ -16,65 +16,87 @@ This project showcases an advanced conversational agent built with Chainlit and 
 ```
 ├── .dockerignore
 ├── .gitignore
-├── app.py                           # Main Chainlit application
-├── chainlit.md                      # Welcome page content
-├── docker-compose.yml               # Docker orchestration
-├── Dockerfile                       # Application container
-├── pgVector.Dockerfile              # PostgreSQL with pgVector extension
-├── init.sql                         # Database initialization script
-├── requirements.txt                 # Python dependencies
+├── app.py                          # Main Chainlit application
+├── chainlit.md                     # Welcome page content
+├── docker-compose.yml              # Docker orchestration
+├── Dockerfile                      # Application container
+├── pgVector.Dockerfile             # PostgreSQL with pgVector extension
+├── init.sql                        # Database initialization script
+├── requirements.txt                # Python dependencies
 ├── README.md
-├── examples/
-│   ├── fiteness_health_tracking.md  # Fitness health tracking use case
-│   ├── tech_career_growth.md        # Tech career growth use case
-│   └── travel_booking_automation.md # Travel booking automation use case
 ├── public/
-│   ├── custom.css                   # Custom styling
-│   └── theme.json                   # UI theme configuration
+│   ├── custom.css                  # Custom styling
+│   └── theme.json                  # UI theme configuration
 └── src/
     ├── config/
-    │   ├── settings.py              # Application configuration
+    │   ├── settings.py             # Application configuration
     ├── core/
-    │   ├── agent.py                 # Main agent implementation
-    │   ├── memory_config.py         # Memory configuration
-    │   └── session_manager.py       # Session management
+    │   ├── agent.py                # Main agent implementation
+    │   ├── memory_config.py        # Memory configuration
+    │   └── session_manager.py      # Session management
     ├── prompts/
-    │   ├── agent.py                 # Agent system prompts
-    │   ├── memory_retrieval.py      # Memory retrieval prompts
-    │   ├── semantic.py              # Semantic search prompts
-    │   ├── summary.py               # Summarization prompts
-    │   └── user_preference.py       # User preference prompts
+    │   ├── agent.py                # Agent system prompts
+    │   ├── memory_retrieval.py     # Memory retrieval prompts
+    │   ├── semantic.py             # Semantic search prompts
+    │   ├── summary.py              # Summarization prompts
+    │   └── user_preference.py      # User preference prompts
     ├── storage/
-    │   ├── enums.py                 # Memory strategy enums
-    │   ├── models.py                # Database models
-    │   └── repository.py            # Data access layer
+    │   ├── enums.py                # Memory strategy enums
+    │   ├── models.py               # Database models
+    │   └── repository.py           # Data access layer
     ├── strategies/
-    │   ├── base.py                  # Base memory strategy
-    │   ├── semantic.py              # Semantic memory strategy
-    │   ├── summary.py               # Summary memory strategy
-    │   └── user_preference.py       # User preference strategy
+    │   ├── base.py                 # Base memory strategy
+    │   ├── semantic.py             # Semantic memory strategy
+    │   ├── summary.py              # Summary memory strategy
+    │   └── user_preference.py      # User preference strategy
     └── tools/
         ├── __init__.py
-        └── memory_tools.py          # Memory management tools
+        └── memory_tools.py         # Memory management tools
 ```
 
 ## 🐳 Docker Setup
 
 ### ✅ Clone the repository
 ```bash
-git clone https://github.com/taiconnect/taiconnect-3-workshop
+git clone <your-repository-url>
 cd taiconnect-3-workshop
 ```
 
 ## ⚙️ Prerequisites
 
-### 1. API Keys Required
+### 1. Environment Variables Setup
+Create a `.env` file in the root directory with the following configuration:
+
+```env
+# Database Configuration
+POSTGRES_DB=your_database_name
+POSTGRES_USER=your_database_user
+POSTGRES_PASSWORD=your_database_password
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+
+# Database URL (used by the application)
+DATABASE_URL=postgresql://your_database_user:your_database_password@postgres:5432/your_database_name
+
+# pgAdmin Configuration
+PGADMIN_DEFAULT_EMAIL=admin@example.com
+PGADMIN_DEFAULT_PASSWORD=your_pgadmin_password
+
+# AI Model API Keys
+OPENAI_API_KEY=your_openai_api_key
+ANTHROPIC_API_KEY=your_anthropic_api_key
+
+# Chainlit Configuration (Optional)
+CHAINLIT_AUTH_SECRET=your_auth_secret
+```
+
+### 2. API Keys Required
 - **OpenAI API Key**: Get it from [OpenAI Platform](https://platform.openai.com/api-keys)
   - Supports: GPT-4.1, GPT-4.1-mini, GPT-4o, GPT-4o-mini
 - **Anthropic API Key**: Get it from [Anthropic Console](https://console.anthropic.com/)
   - Supports: Claude Sonnet 4.5, Claude Haiku 4.5, Claude 4 Sonnet
 
-### 2. System Requirements
+### 3. System Requirements
 - Docker Engine 20.10+
 - Docker Compose 2.0+
 - Minimum 4GB RAM
@@ -283,8 +305,9 @@ This project is licensed under a modified GNU GPL that restricts commercial use.
 
 ```bash
 # Clone and setup
-git clone https://github.com/taiconnect/taiconnect-3-workshop
+git clone <your-repository-url>
 cd taiconnect-3-workshop
+cp .env.example .env  # Edit with your credentials
 
 # Start application
 docker compose up -d --build
