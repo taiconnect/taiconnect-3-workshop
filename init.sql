@@ -91,8 +91,7 @@ CREATE TABLE IF NOT EXISTS "ThreadMemory" (
     "metadata" JSONB,
     "createdAt" TIMESTAMP DEFAULT NOW(),
     "updatedAt" TIMESTAMP DEFAULT NOW(),
-    FOREIGN KEY ("userId") REFERENCES "User"("id"),
-    FOREIGN KEY ("threadId") REFERENCES "Thread"("id")
+    FOREIGN KEY ("userId") REFERENCES "User"("id")
 );
 
 CREATE TABLE "ExchangeThread" (

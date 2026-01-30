@@ -117,6 +117,56 @@ This command:
 - PostgreSQL: `5532` (mapped from container's 5432)
 - pgAdmin: `5051`
 
+Got it 👍 — here is the same section formatted as **pure Markdown**, ready to paste directly into your `README.md`:
+
+---
+
+## 🔁 Code Workflow Diagram (Interactive)
+
+This repository includes an interactive workflow diagram that explains the overall code flow.
+
+* File: `code_flow.dio`
+* Created using **draw.io**
+* Designed to work with the **Draw.io VS Code Extension** and VS Code **Code Link** feature
+
+When opened correctly, you can:
+
+* View the flow diagram alongside the source code
+* Click on any diagram box to navigate directly to the corresponding file and line in the code
+
+---
+
+### 📦 Prerequisites
+
+1. Install **Draw.io Integration** extension in VS Code
+   Extension ID: `hediet.vscode-drawio`
+
+2. Enable **Code Link** feature
+
+   * Open VS Code
+   * Look at the status bar (bottom)
+   * Enable **Code Link** (click it if disabled)
+
+---
+
+### 📂 How to Use
+
+1. Open the repository in VS Code
+2. Open `code_flow.dio`
+3. Open the relevant source folder/file
+4. Arrange editor panes side-by-side:
+
+   * Left: `code_flow.dio`
+   * Right: Source code
+5. Click any box inside the diagram → VS Code navigates to the linked file and line
+
+### 💡 Recommended Workflow
+
+Keeping the diagram and code open side-by-side provides a fast way to:
+
+* Understand system architecture
+* Trace execution paths
+
 ## 🎯 Using the Application
 
 ### 1. First Time Setup
