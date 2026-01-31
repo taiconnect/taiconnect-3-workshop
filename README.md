@@ -73,6 +73,8 @@ cd taiconnect-3-workshop
   - Supports: GPT-4.1, GPT-4.1-mini, GPT-4o, GPT-4o-mini
 - **Anthropic API Key**: Get it from [Anthropic Console](https://console.anthropic.com/)
   - Supports: Claude Sonnet 4.5, Claude Haiku 4.5, Claude 4 Sonnet
+- **Google AI API Key**: Get it from [Google AI Studio](https://aistudio.google.com/app/apikey)
+   - Supports: gemini-embedding-001
 
 ### 2. System Requirements
 - Docker Engine 20.10+
