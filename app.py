@@ -110,9 +110,10 @@ def get_agent_memory_config():
         no_of_exchanges_to_llm=no_exchanges_to_llm, 
         model=cl_settings["model"],
         summarization_model=cl_settings["summarization_model"],
-        embedding_model=config_settings.DEFAULT_EMBEDDING_MODEL,
+        embedding_model=cl_settings["embedding_model"],
         openai_api_key=user_env['OPENAI_API_KEY'],
         anthropic_api_key=user_env['ANTHROPIC_API_KEY'],
+        gemini_api_key=user_env['GEMINI_API_KEY'],
         summary_score=cl_settings["summary_score"],
         semantic_score=cl_settings["semantic_score"],
         user_preference_score=cl_settings["user_preference_score"],
@@ -132,6 +133,12 @@ async def set_chat_settings(chat_history: Optional[list] = None, thread_id: Opti
                 label="Summarization Models",
                 items=config_settings.PROVIDER_MODELS_KEYS,
                 initial_value=config_settings.DEFAULT_SUMMARIZATION_MODEL,
+            ),
+            Select(
+                id="embedding_model",
+                label="Embedding Models",
+                items=config_settings.EMBEDDING_MODELS_KEYS,
+                initial_value=config_settings.DEFAULT_EMBEDDING_MODEL,
             ),
             Select(
                 id="no_exchanges_to_llm",
@@ -159,7 +166,7 @@ async def set_chat_settings(chat_history: Optional[list] = None, thread_id: Opti
                 initial=config_settings.DEFAULT_SUMMARY_SCORE,
                 min=0,
                 max=1,
-                step=0.01,
+                step=0.001,
             ),
             Slider(
                 id="semantic_score",
@@ -167,7 +174,7 @@ async def set_chat_settings(chat_history: Optional[list] = None, thread_id: Opti
                 initial=config_settings.DEFAULT_SEMANTIC_SCORE,
                 min=0,
                 max=1,
-                step=0.01,
+                step=0.001,
             ),
             Slider(
                 id="user_preference_score",
@@ -175,7 +182,7 @@ async def set_chat_settings(chat_history: Optional[list] = None, thread_id: Opti
                 initial=config_settings.DEFAULT_USER_PREFERENCE_SCORE,
                 min=0,
                 max=1,
-                step=0.01,
+                step=0.001,
             ),
         ]
     ).send()

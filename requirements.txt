@@ -8,3 +8,4 @@ llama-index
 llama-index-vector-stores-postgres
 llama-index-llms-anthropic
 llama-index-embeddings-openai
+llama-index-embeddings-google-genai

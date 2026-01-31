@@ -5,8 +5,11 @@ from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 from llama_index.embeddings.openai import OpenAIEmbedding
+from google.genai.types import EmbedContentConfig
+from google import genai
 from src.core.memory_config import AgentCoreMemoryConfig
 from src.storage.models import ThreadMemory
+from src.config.settings import settings as config_settings
 
 class MemoryStrategy(ABC):
     """Base class for memory strategies."""
@@ -24,8 +27,21 @@ class MemoryStrategy(ABC):
         Returns:
             List of embedding vectors
         """
-        embedding = OpenAIEmbedding(model=self.config.embedding_model, api_key=self.config.openai_api_key).get_text_embedding(text)
-        return embedding
+        model_config = config_settings.EMBEDDING_MODELS.get(self.config.embedding_model)
+        if model_config["provider"] == "OpenAI":
+            embedding = OpenAIEmbedding(model=self.config.embedding_model, api_key=self.config.openai_api_key).get_text_embedding(text)
+            return embedding
+        elif model_config["provider"] == "Google": 
+            client = genai.Client(api_key=self.config.gemini_api_key)
+            result = client.models.embed_content(
+                        model=self.config.embedding_model,
+                        contents=text,
+                        config=EmbedContentConfig(
+                            output_dimensionality=3072,
+                        ),
+                    )
+            embedding = result.embeddings[0].values
+            return embedding
     
     @abstractmethod
     async def process_conversation(

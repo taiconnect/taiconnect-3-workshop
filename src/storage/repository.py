@@ -154,6 +154,12 @@ class Repository:
                 
                 # Return tuples of (memory, score)
                 results = query.all()
+                print("\n=== Similarity Scores for query ===")
+                print(f"User ID: {user_id}, Strategy: {strategy_id}, Thread ID: {thread_id}, Limit: {limit}")
+                for row in results:
+                    memory, score = row[0], float(row[1])
+                    print(f"Score: {score:.4f} | Content: {memory.content[:50]}...")
+                print("=" * 50 + "\n")
                 return [(row[0], float(row[1])) for row in results]
             
             else:

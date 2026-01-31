@@ -19,6 +19,7 @@ class AgentCoreMemoryConfig(BaseModel):
     embedding_model: str = Field(..., description="Model name for embedding generation")
     openai_api_key: Optional[str] = Field(default=None, description="OpenAI API Key")
     anthropic_api_key: Optional[str] = Field(default=None, description="Anthropic API Key")
+    gemini_api_key: Optional[str] = Field(default=None, description="Google Gemini API Key")
     summary_score: float = Field(default=0.3, description="Threshold score for summary relevance")
     semantic_score: float = Field(default=0.2, description="Threshold score for semantic relevance")
     user_preference_score: float = Field(default=0.1, description="Threshold score for user preference relevance")
